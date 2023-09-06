@@ -54,3 +54,20 @@ serviceCards.forEach(card => {
         card.style.transform = 'scale(1)';
     });
 });
+
+document.getElementById('customGoogleBtn').addEventListener('click', function() {
+    // Trigger the Google Sign-In
+    gapi.auth2.getAuthInstance().signIn();
+});
+
+function onSignIn(googleUser) {
+    // Get the user's ID token and basic profile information
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId());
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+}
+
+
+

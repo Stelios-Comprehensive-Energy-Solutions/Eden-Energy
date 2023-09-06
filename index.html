@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eden-Energy</title>
     <link rel="stylesheet" href="index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
+    <meta name="google-signin-client_id"
+        content="475401150478-4mug20hplbchu2c5be9r9onaehvupvgq.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
 </head>
+
 <body>
     <!-- Navigation Bar -->
     <header>
         <nav class="navbar" aria-label="Main Navigation">
             <div class="container">
                 <a href="#" class="logo">
-                    <img src="logo.png" alt="Eden-Energy Logo" class="logo-img">
+                    <img src="EDEN.svg" alt="Eden-Energy Logo" class="logo-img">
                     Eden-Energy
                 </a>
                 <ul class="nav-list">
                     <li><a href="#">Home</a></li>
-                    <li><a href="about_page.html">About</a></li>
-                    <li>
-                        <a href="#" aria-haspopup="true">Services</a>
-                        <!-- Submenu -->
-                        <ul class="dropdown" aria-label="Submenu for Services">
-                            <li><a href="#">Residential Solutions</a></li>
-                            <li><a href="#">Corporate Solutions</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Products</a></li>
                     <li><a href="#">Values & Governance</a></li>
-                    <li><a href="#">Biblical Worldview</a></li>
-                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Testimonies</a></li>
                     <li><a href="#">Contact</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Account</a></li>
+
+                    <!-- Google Sign-In button -->
+                    <button id="customGoogleBtn" class="customGPlusSignIn">
+                        <span class="icon"></span>
+                        <span class="buttonText">Google Sign-In</span>
+                      </button>
+                      
+
                 </ul>
+
+
+
                 <!-- Mobile Menu Toggle -->
                 <button class="menu-toggle" aria-label="Mobile Menu Toggle">
                     <span class="bar"></span>
@@ -42,6 +54,7 @@
         </nav>
     </header>
 
+
     <main>
         <!-- Banner Section with Video Background -->
         <section class="banner">
@@ -49,7 +62,7 @@
                 <source src="path_to_your_video.mp4" type="video/mp4">
             </video>
             <div class="banner-content">
-                <h1>Empowering the Southern Cape</h1>
+                <h1>Empowering Africa</h1>
                 <p>With Sustainable Energy Solutions</p>
                 <button class="cta-button">Learn More</button>
             </div>
@@ -65,7 +78,10 @@
                         <figcaption>Eden-Energy Team</figcaption>
                     </figure>
                     <div class="about-text">
-                        <p>Stelios PBO was founded in George in 2015 by Pierre Ferreira, Rudi Steyn, and Japie Lubbe. Our journey from corporate professionals to dedicated community changemakers has been driven by a passion to make a difference in the Southern Cape. Today, Eden-Energy stands as a testament to our commitment to providing sustainable energy solutions.</p>
+                        <p>Stelios PBO was founded in George in 2015 by Pierre Ferreira, Rudi Steyn, and Japie Lubbe.
+                            Our journey from corporate professionals to dedicated community changemakers has been driven
+                            by a passion to make a difference in the Southern Cape. Today, Eden-Energy stands as a
+                            testament to our commitment to providing sustainable energy solutions.</p>
                         <a href="about.html" class="read-more">Read More</a>
                     </div>
                 </div>
@@ -122,7 +138,7 @@
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
-                <img src="logo.png" alt="Eden-Energy Logo">
+                <img src="EDEN.svg" alt="Eden-Energy Logo">
             </div>
             <nav class="footer-links" aria-label="Footer Navigation">
                 <ul>
@@ -148,8 +164,9 @@
         <!-- Back-to-Top Button -->
         <button id="backToTop" title="Go to top">Top</button>
     </footer>
-
     <script src="index.js"></script>
+
+
 </body>
+
 </html>
- 

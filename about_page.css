@@ -11,7 +11,7 @@ section {
     padding: 50px;
     margin: 20px;
     border-radius: 10px;
-    background-color: #A8D5BA; /* Green background for sections */
+    background-color: #E09336; /* Green background for sections */
 }
 
 h2 {
@@ -98,7 +98,7 @@ body {
 }
 
 .nav-list li a:hover, .nav-list li a:focus {
-    color: #A8D5BA;
+    color: #E09336;
     outline: none; /* Remove default focus outline */
 }
 
@@ -123,7 +123,7 @@ body {
 }
 
 .dropdown li a:hover, .dropdown li a:focus {
-    color: #A8D5BA;
+    color: #E09336;
     background-color: #8E735B;
     outline: none;
 }
@@ -179,7 +179,7 @@ body {
     }
 
     .nav-list li a:hover {
-        color: #A8D5BA;
+        color: #E09336;
     }
 
     .about-content {
@@ -226,7 +226,7 @@ body {
 
 .banner h1 {
     font-size: 3rem;
-    color: #A8D5BA;
+    color: #E09336;
     margin-bottom: 1rem;
 }
 
@@ -269,7 +269,7 @@ body {
 }
 
 .cta-button:hover, .cta-button:focus {
-    background-color: #A8D5BA;
+    background-color: #E09336;
     outline: none;
 }
 
@@ -301,7 +301,7 @@ body {
 .about-text {
     flex: 1;
     padding: 1.25rem;
-    background-color: #A8D5BA;
+    background-color: #E09336;
     border-radius: 0.625rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
@@ -404,7 +404,7 @@ body {
 
 /* Newsletter Signup */
 #newsletter {
-    background-color: #A8D5BA;
+    background-color: #E09336;
     padding: 3.125rem 0;
     text-align: center;
 }
@@ -458,7 +458,7 @@ footer {
 }
 
 .footer-links ul li a:hover, .footer-links ul li a:focus {
-    color: #A8D5BA;
+    color: #E09336;
     outline: none;
 }
 
@@ -481,7 +481,7 @@ footer {
     bottom: 2rem;
     right: 2rem;
     padding: 0.5rem 1rem;
-    background-color: #A8D5BA;
+    background-color: #E09336;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
