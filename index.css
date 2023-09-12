@@ -66,11 +66,15 @@ body {
 
 /* Dropdown Menu Styles */
 .dropdown {
-    display: none;
-    position: absolute;
-    background-color: #5B9DB0;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+}
+
+.nav-list li:hover .dropdown {
+    max-height: 300px; /* Adjust this value based on the actual height of your dropdown */
+    opacity: 1;
 }
 
 .dropdown li {
@@ -90,25 +94,32 @@ body {
     outline: none;
 }
 
-.nav-list li:hover .dropdown, .nav-list li:focus-within .dropdown {
-    display: block;
-}
-
 /* Mobile Menu Toggle Styles */
 .menu-toggle {
     display: none;
     flex-direction: column;
+    justify-content: center; /* Center the bars vertically */
     cursor: pointer;
     float: right;
-    padding: 0.625rem;
+    padding: 15px 15px; /* Increased padding */
+    background-color: #4B8A7E; /* Background color */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.menu-toggle:hover {
+    background-color: #3A7A6E; /* Slightly darker shade on hover */
 }
 
 .bar {
-    background-color: #4B8A7E;
+    background-color: #FFFFFF; /* White bars */
     height: 3px;
     width: 25px;
-    margin: 3px;
+    margin: 3px 0; /* Increased spacing between bars */
+    border-radius: 2px; /* Rounded edges */
+    transition: 0.4s;
 }
+
 
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
@@ -132,16 +143,8 @@ body {
         left: 0;
     }
 
-    .nav-list li {
-        margin: 0.625rem 0;
-    }
-
-    .nav-list li a {
-        color: #4B8A7E;
-    }
-
-    .nav-list li a:hover {
-        color: #E09336;
+    .menu-toggle {
+        display: block;
     }
 
     .about-content {
@@ -156,6 +159,18 @@ body {
     .footer-links ul li {
         display: block;
         margin-bottom: 0.625rem;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
     }
 }
 
