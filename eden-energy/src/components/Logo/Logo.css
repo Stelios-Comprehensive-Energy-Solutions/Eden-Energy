@@ -1,0 +1,17 @@
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-svg {
+    height: 2.5rem;
+    width: auto;
+    margin-right: 0.625rem;
+}
+
+.logo-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4B8A7E;
+}
