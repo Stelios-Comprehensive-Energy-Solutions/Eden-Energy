@@ -3,6 +3,7 @@ import { Container, Typography, Button, Box, Grid, Paper } from '@mui/material';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import Navbar from '../../components/Navbar/Navbar';
 import Banner from '../../components/Banner/Banner';
+import Footer from '../../components/Footer/Footer';
 
 
 function Home() {
@@ -90,6 +91,7 @@ function Home() {
                     </Box>
                 ))}
             </Container>
+            <Footer />
         </ThemeProvider>
     );
 }

@@ -1,40 +1,93 @@
-// src/components/Footer/Footer.js
-
 import React from 'react';
-import './Footer.css';
-import Logo from '../Logo/Logo'; // Import the SVG
+import { Link as RouterLink } from 'react-router-dom';
+import { Box, Typography, IconButton, Link, Grid, List, ListItem, Tooltip } from '@mui/material';
+import Logo from '../Logo/Logo';
+
+// Importing Material-UI icons
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
+import {ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#0d47a1', // A shade of blue
+        },
+        secondary: {
+            main: '#c62828', // A shade of red
+        },
+        background: {
+            default: '#f4f4f4', // A light background color
+        },
+    },
+    typography: {
+        // Adjust typography if needed
+    },
+    // ... any other theme customizations
+});
 
 function Footer() {
     return (
-        <footer>
-            <div className="footer-container">
-                <div className="footer-logo">
-                    <Logo />
-                </div>
-                <nav className="footer-links" aria-label="Footer Navigation">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </nav>
-                <div className="footer-social">
-                    <a href="#"><img src="/path_to_facebook_icon.png" alt="Facebook" /></a>
-                    <a href="#"><img src="/path_to_twitter_icon.png" alt="Twitter" /></a>
-                    {/* ... other social media icons ... */}
-                </div>
-                <address className="footer-contact">
-                    <p>Stelios Comprehensive Energy Solutions Pty (Ltd t/a Eden-Energy)</p>
-                    <p>Based in George, South Africa</p>
-                    <p>Email: <a href="mailto:your_email@example.com">your_email@example.com</a></p>
-                    <p>Phone: <a href="tel:+27-XX-XXX-XXXX">+27-XX-XXX-XXXX</a></p>
-                </address>
-            </div>
-            {/* Back-to-Top Button */}
-            <button id="backToTop" title="Go to top">Top</button>
-        </footer>
+        <ThemeProvider theme={theme}>
+            <Box component="footer" sx={{ mt: 4, p: 3, backgroundColor: 'background.paper' }}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} sm={2}>
+                        <Logo />
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                        <Typography variant="h6" gutterBottom>Navigation</Typography>
+                        <nav aria-label="Footer Navigation">
+                            <List sx={{ padding: 0 }}>
+                                {['Home', 'Services', 'Products', 'Account', 'Contact'].map((item, index) => (
+                                    <ListItem key={index} disablePadding sx={{ mb: 1 }}>
+                                        <Link
+                                            component={RouterLink}
+                                            to={`/${item.toLowerCase()}`}
+                                            sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+                                        >
+                                            {item}
+                                        </Link>
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </nav>
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                        <Typography variant="h6" gutterBottom>Social</Typography>
+                        {[{ icon: FacebookIcon, title: 'Facebook' }, { icon: TwitterIcon, title: 'Twitter' }].map((social, index) => (
+                            <Tooltip key={index} title={social.title}>
+                                <IconButton
+                                    href="#"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    color="primary"
+                                    sx={{ mr: 1 }}
+                                >
+                                    <social.icon />
+                                </IconButton>
+                            </Tooltip>
+                        ))}
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                        <Typography variant="h6" gutterBottom>Contact</Typography>
+                        <address>
+                            <Typography gutterBottom>Stelios Comprehensive Energy Solutions Pty (Ltd t/a Eden-Energy)</Typography>
+                            <Typography gutterBottom>Based in George, South Africa</Typography>
+                            <Typography gutterBottom>
+                                <EmailIcon fontSize="small" sx={{ verticalAlign: 'middle', mr: 1 }} />
+                                <Link href="mailto:your_email@example.com">your_email@example.com</Link>
+                            </Typography>
+                            <Typography gutterBottom>
+                                <PhoneIcon fontSize="small" sx={{ verticalAlign: 'middle', mr: 1 }} />
+                                <Link href="tel:+27-XX-XXX-XXXX">+27-XX-XXX-XXXX</Link>
+                            </Typography>
+                        </address>
+                    </Grid>
+                </Grid>
+            </Box>
+        </ThemeProvider>
     );
 }
 

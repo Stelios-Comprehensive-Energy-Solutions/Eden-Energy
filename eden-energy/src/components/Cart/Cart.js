@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Container, Typography, List, ListItem, ListItemText, Paper } from '@mui/material';
 
 function Cart() {
     const [cartItems, setCartItems] = useState([]);
@@ -19,17 +20,19 @@ function Cart() {
     // Add other cart-related functions here, like adding or removing items
 
     return (
-        <div>
-            <h3>Your Cart</h3>
-            <ul>
+        <Container component={Paper} elevation={3} style={{ padding: '16px', marginTop: '16px' }}>
+            <Typography variant="h5" gutterBottom>
+                Your Cart
+            </Typography>
+            <List>
                 {cartItems.map((item, index) => (
-                    <li key={index}>
-                        {item.name} - {item.quantity}
-                    </li>
+                    <ListItem key={index}>
+                        <ListItemText primary={item.name} secondary={`Quantity: ${item.quantity}`} />
+                    </ListItem>
                 ))}
-            </ul>
+            </List>
             {/* You can add more cart functionalities like total price, checkout button, etc. */}
-        </div>
+        </Container>
     );
 }
 
