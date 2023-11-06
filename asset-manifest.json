@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/Eden-Energy/static/css/main.3506abaa.css",
-    "main.js": "/Eden-Energy/static/js/main.521be05c.js",
+    "main.js": "/Eden-Energy/static/js/main.be16f0a4.js",
     "static/js/787.3984268a.chunk.js": "/Eden-Energy/static/js/787.3984268a.chunk.js",
+    "static/media/Commercial.png": "/Eden-Energy/static/media/Commercial.d79487fc26c963c49771.png",
+    "static/media/Industrial.png": "/Eden-Energy/static/media/Industrial.5145d1a98f2b41e37da2.png",
+    "static/media/Agricultural.png": "/Eden-Energy/static/media/Agricultural.3e7caa6cd9556d796ad1.png",
+    "static/media/Residential.png": "/Eden-Energy/static/media/Residential.54b1f8925ce54c74a8dd.png",
     "index.html": "/Eden-Energy/index.html",
-    "static/media/agricultural.svg": "/Eden-Energy/static/media/agricultural.2c2744587b77dac320b7ae5106da5012.svg",
-    "static/media/residential.svg": "/Eden-Energy/static/media/residential.28bcda913a0fed70b8a1ff267901ca3a.svg",
-    "static/media/commercial.svg": "/Eden-Energy/static/media/commercial.6af46bb8006799b439f7ba5043813311.svg",
-    "static/media/industrial.svg": "/Eden-Energy/static/media/industrial.5e46d8e9dded26eebb676eef4ae7fa95.svg",
     "main.3506abaa.css.map": "/Eden-Energy/static/css/main.3506abaa.css.map",
-    "main.521be05c.js.map": "/Eden-Energy/static/js/main.521be05c.js.map",
+    "main.be16f0a4.js.map": "/Eden-Energy/static/js/main.be16f0a4.js.map",
     "787.3984268a.chunk.js.map": "/Eden-Energy/static/js/787.3984268a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3506abaa.css",
-    "static/js/main.521be05c.js"
+    "static/js/main.be16f0a4.js"
   ]
 }
