@@ -2,6 +2,7 @@
   "name": "eden-energy",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Stelios-Comprehensive-Energy-Solutions.github.io/Eden-Energy",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -23,8 +24,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
+  
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -45,6 +49,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
-    "file-loader": "^6.2.0"
+    "file-loader": "^6.2.0",
+    "gh-pages": "^6.0.0"
   }
 }
