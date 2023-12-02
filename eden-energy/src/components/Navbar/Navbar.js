@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useContext } from 'react';
 import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom';
 import {
     AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon,
-    Tabs, Tab, TextField, LinearProgress, Badge, Typography, Tooltip, styled
+    Tabs, Tab, TextField, LinearProgress, Badge, Typography, Tooltip, styled, Select, MenuItem
 } from '@mui/material';
 import {
     Menu as MenuIcon, Assignment as ValuesIcon, RateReview as TestimoniesIcon,
@@ -12,6 +12,8 @@ import {
 } from '@mui/icons-material';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+import IndustryContext from '../../Context';
 
 import Logo from '../Logo/Logo';
 import Cart from '../Cart/Cart';
@@ -47,6 +49,12 @@ const theme = createTheme({
 const Navbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
+
+    const { industry, setIndustry } = useContext(IndustryContext);
+
+    const handleIndustryChange = (event) => {
+        setIndustry(event.target.value);
+    };
 
     // Define main navigation tabs
     const tabs = useMemo(() => [
@@ -137,6 +145,19 @@ const Navbar = () => {
                         ))}
                     </Tabs>
                     <Spacer />
+                    {/* Dropdown for selecting industry */}
+                    <Select
+                        value={industry}
+                        onChange={handleIndustryChange}
+                        displayEmpty
+                        inputProps={{ 'aria-label': 'Without label' }}
+                        style={{ marginRight: '10px', color: 'white' }} // Adjust styling as needed
+                    >
+                        <MenuItem value="Residential">Residential</MenuItem>
+                        <MenuItem value="Commercial">Commercial</MenuItem>
+                        <MenuItem value="Industrial">Industrial</MenuItem>
+                        <MenuItem value="Agriculture">Agriculture</MenuItem>
+                    </Select>
                     <SearchField placeholder="Search..." variant="outlined" size="small" />
                     <Account />
                 </Toolbar>
