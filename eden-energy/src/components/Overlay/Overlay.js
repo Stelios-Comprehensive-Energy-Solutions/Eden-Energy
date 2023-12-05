@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { Box, Modal, Typography, Card, CardActionArea, CardMedia } from '@mui/material';
-import { styled } from '@mui/system';
+import { Box, Modal, Typography, Card, CardActionArea, CardMedia, styled } from '@mui/material';
 
 import IndustryContext from '../../Context';
 
@@ -14,6 +13,8 @@ const StyledModal = styled(Modal)({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    BackdropProps: { style: { backdropFilter: 'blur(3px)' } }, // Moved inline styling here
+    // Add any additional styling as needed
 });
 
 const GridContainer = styled(Box)({
@@ -46,6 +47,10 @@ const FlipCardInner = styled('div')({
     '&:hover': {
         transform: 'rotateY(180deg)',
     },
+    '&:hover': {
+        transform: 'rotateY(180deg)',
+        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', // Added shadow effect for depth
+    },
 });
 
 const CardFront = styled(CardActionArea)({
@@ -53,6 +58,9 @@ const CardFront = styled(CardActionArea)({
     width: '100%',
     height: '100%',
     backfaceVisibility: 'hidden', // Hide the back side when flipped
+    cursor: 'pointer',
+    transition: 'transform 0.3s ease', // Optional: for a smoother hover effect
+    backfaceVisibility: 'hidden',
 });
 
 const CardBack = styled('div')({
@@ -68,6 +76,10 @@ const CardBack = styled('div')({
     justifyContent: 'center',
     flexDirection: 'column',
     padding: '1rem',
+    cursor: 'pointer',
+    transition: 'transform 0.3s ease', // Optional: for a smoother hover effect
+    backfaceVisibility: 'hidden',
+    transform: 'rotateY(180deg)',
 });
 
 const Overlay = ({ onClose }) => {
@@ -86,7 +98,7 @@ const Overlay = ({ onClose }) => {
             onClose={onClose}
             aria-labelledby="select-industry"
             aria-describedby="select-industry-modal"
-            BackdropProps={{ style: { backdropFilter: 'blur(3px)' } }}
+            disableEscapeKeyDown // Disables closing the modal with the escape key
         >
             <Box bgcolor="background.paper" p={4} borderRadius={5}>
                 <Box textAlign="center" mb={4}>
@@ -109,6 +121,7 @@ const Overlay = ({ onClose }) => {
                                     component="img"
                                     image={ResidentialSVG}
                                     alt="Residential"
+                                    loading="lazy" // This enables lazy loading
                                 />
                             </CardFront>
                             <CardBack  onClick={() => handleIndustrySelect('Residential')}>
@@ -121,7 +134,6 @@ const Overlay = ({ onClose }) => {
                             </CardBack>
                         </FlipCardInner>
                     </FlipCard>
-                    {/* Repeat for other industries... */}
                     {/* FlipCard for Commercial */}
                     <FlipCard>
                         <FlipCardInner>
@@ -130,6 +142,7 @@ const Overlay = ({ onClose }) => {
                                     component="img"
                                     image={CommercialSVG}
                                     alt="Commercial"
+                                    loading="lazy" // This enables lazy loading
                                 />
                             </CardFront>
                             <CardBack onClick={() => handleIndustrySelect('Commercial')}>
@@ -151,6 +164,7 @@ const Overlay = ({ onClose }) => {
                                     component="img"
                                     image={IndustrialSVG}
                                     alt="Industrial"
+                                    loading="lazy" // This enables lazy loading
                                 />
                             </CardFront>
                             <CardBack onClick={() => handleIndustrySelect('Industrial')}>
@@ -172,6 +186,7 @@ const Overlay = ({ onClose }) => {
                                     component="img"
                                     image={AgriculturalSVG}
                                     alt="Agricultural"
+                                    loading="lazy" // This enables lazy loading
                                 />
                             </CardFront>
                             <CardBack onClick={() => handleIndustrySelect('Agricultural')}>

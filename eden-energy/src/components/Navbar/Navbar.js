@@ -28,6 +28,13 @@ const Spacer = styled('div')({
     flexGrow: 1,
 });
 
+const StyledTab = styled(Tab)({
+    '&.Mui-selected': {
+        color: '#fff', // or any color that contrasts well with the AppBar's color
+    },
+    // other styles...
+});
+
 const theme = createTheme({
     palette: {
         primary: {
@@ -136,7 +143,7 @@ const Navbar = () => {
                     </Typography>
                     <Tabs value={tabValue} onChange={handleTabChange}>
                         {tabs.map((tab, index) => (
-                            <Tab
+                            <StyledTab
                                 label={tab.text}
                                 key={tab.text}
                                 icon={tab.icon}
