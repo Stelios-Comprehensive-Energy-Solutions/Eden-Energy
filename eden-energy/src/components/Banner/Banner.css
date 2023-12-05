@@ -1,0 +1,67 @@
+/* Banner Styles */
+.banner {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    background-color: #DBD9A6;
+    overflow: hidden;
+}
+
+.banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: #4B8A7E;
+    text-align: center;
+}
+
+.banner h1 {
+    font-size: 3rem;
+    color: #E09336;
+    margin-bottom: 1rem;
+}
+
+.banner p {
+    font-size: 1.5rem;
+    color: #5B9DB0;
+}
+
+.banner-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+}
+
+/* Video Background */
+.banner video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+/* Call-to-Action Button */
+.cta-button {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: #5B9DB0;
+    color: #DBD9A6;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover, .cta-button:focus {
+    background-color: #E09336;
+    outline: none;
+}
