@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import IndustryContext from '../../Context';
+import {IndustryContext} from '../../Context';
 import { Grid, Card, CardMedia, CardContent, Typography, Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import servicesData from './servicesData';
 import Footer from '../../components/Footer/Footer';

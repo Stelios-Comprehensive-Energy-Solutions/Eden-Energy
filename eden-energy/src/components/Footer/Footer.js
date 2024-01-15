@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Box, Typography, IconButton, Link, Grid, List, ListItem, Tooltip } from '@mui/material';
+import { Box, Typography, IconButton, Link, Grid, List, ListItem, TextField, Button, Tooltip } from '@mui/material';
 import Logo from '../Logo/Logo';
 
 // Importing Material-UI icons
@@ -32,10 +32,15 @@ function Footer() {
     return (
         <ThemeProvider theme={theme}>
             <Box component="footer" sx={{ mt: 4, p: 3, backgroundColor: 'background.paper' }}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={2}>
-                        <Logo />
+                <Grid container spacing={3} >
+                    {/* Logo Section */}
+                    <Grid item xs={12} sm={2} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <div style={{ transform: 'scale(2.0)' }}> {/* Scale the logo */}
+                            <Logo />
+                        </div>
                     </Grid>
+
+                    {/* Navigation Links */}
                     <Grid item xs={12} sm={3}>
                         <Typography variant="h6" gutterBottom>Navigation</Typography>
                         <nav aria-label="Footer Navigation">
@@ -54,6 +59,8 @@ function Footer() {
                             </List>
                         </nav>
                     </Grid>
+
+                    {/* Social Media Links */}
                     <Grid item xs={12} sm={3}>
                         <Typography variant="h6" gutterBottom>Social</Typography>
                         {[{ icon: FacebookIcon, title: 'Facebook' }, { icon: TwitterIcon, title: 'Twitter' }].map((social, index) => (
@@ -70,6 +77,8 @@ function Footer() {
                             </Tooltip>
                         ))}
                     </Grid>
+
+                    {/* Contact Information */}
                     <Grid item xs={12} sm={3}>
                         <Typography variant="h6" gutterBottom>Contact</Typography>
                         <address>
@@ -84,6 +93,33 @@ function Footer() {
                                 <Link href="tel:+27-XX-XXX-XXXX">+27-XX-XXX-XXXX</Link>
                             </Typography>
                         </address>
+                    </Grid>
+
+                    {/* Newsletter Signup */}
+                    <Grid item xs={12} sm={3}>
+                        <Typography variant="h6" gutterBottom>Newsletter</Typography>
+                        <form>
+                            <TextField label="Email Address" variant="outlined" size="small" fullWidth sx={{ mb: 2 }} />
+                            <Button variant="contained" color="primary">Subscribe</Button>
+                        </form>
+                    </Grid>
+
+                    {/* Legal and Compliance Links */}
+                    <Grid item xs={12} sm={3}>
+                        <Typography variant="h6" gutterBottom>Legal</Typography>
+                        <List sx={{ padding: 0 }}>
+                            {['Terms of Service', 'Privacy Policy'].map((item, index) => (
+                                <ListItem key={index} disablePadding sx={{ mb: 1 }}>
+                                    <Link
+                                        component={RouterLink}
+                                        to={`/values#${item.toLowerCase().replace(/\s/g, '-')}`}
+                                        sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+                                    >
+                                        {item}
+                                    </Link>
+                                </ListItem>
+                            ))}
+                        </List>
                     </Grid>
                 </Grid>
             </Box>

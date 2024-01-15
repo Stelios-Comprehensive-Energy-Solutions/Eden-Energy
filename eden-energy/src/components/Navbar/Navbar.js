@@ -1,28 +1,26 @@
-import React, { useState, useEffect, useMemo, useContext } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom';
 import {
     AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon,
-    Tabs, Tab, TextField, LinearProgress, Badge, Typography, Tooltip, styled, Select, MenuItem
+    Tabs, Tab, TextField, Badge, Typography, Tooltip, styled, Select, MenuItem,Collapse
 } from '@mui/material';
+
 import {
     Menu as MenuIcon, Assignment as ValuesIcon, RateReview as TestimoniesIcon,
     HelpOutline as HelpIcon, ShoppingCart as ShoppingCartIcon, Home as HomeIcon,
     Build as BuildIcon, ShoppingBasket as ShoppingBasketIcon, AccountCircle as AccountCircleIcon,
-    Mail as MailIcon
+    Mail as MailIcon,Settings as SettingsIcon,Notifications as NotificationsIcon, ExpandLess, ExpandMore
 } from '@mui/icons-material';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-import IndustryContext from '../../Context';
+import {IndustryContext} from '../../Context';
 
 import Logo from '../Logo/Logo';
 import Cart from '../Cart/Cart';
 import Account from '../Account/Account';
-
-// Styled components
-const SearchField = styled(TextField)({
-    marginLeft: '10px',
-});
+import PersistentSideDrawer from '../PersistentSideDrawer.js/PersistentSideDrawer';
+import SearchBar from '../SearchBar/SearchBar'; // Import the SearchBar component
 
 const Spacer = styled('div')({
     flexGrow: 1,
@@ -59,6 +57,12 @@ const Navbar = () => {
 
     const { industry, setIndustry } = useContext(IndustryContext);
 
+    const handleSearch = (searchTerm) => {
+        // Implement your search logic here
+        // For example, navigate to a search results page or filter items in the current view
+        console.log("Searching for:", searchTerm);
+        };
+
     const handleIndustryChange = (event) => {
         setIndustry(event.target.value);
     };
@@ -68,7 +72,6 @@ const Navbar = () => {
         { text: 'Home', icon: <HomeIcon /> },
         { text: 'Services', icon: <BuildIcon /> },
         { text: 'Products', icon: <ShoppingBasketIcon /> },
-        { text: 'Account', icon: <AccountCircleIcon /> },
         { text: 'Contact', icon: <MailIcon /> }
     ], []);
 
@@ -76,15 +79,12 @@ const Navbar = () => {
     const initialTabValue = tabs.findIndex(tab => `/${tab.text.toLowerCase()}` === location.pathname);
     const [tabValue, setTabValue] = useState(initialTabValue !== -1 ? initialTabValue : 0);
 
-    const [menuActive, setMenuActive] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
-    // Simulate loading state for demonstration purposes
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false);
-        }, 2000);
-    }, []);
+    const toggleDrawer = () => {
+        setDrawerOpen(!drawerOpen);
+    };
+
 
     // Handle tab change and navigation
     const handleTabChange = (event, newValue) => {
@@ -92,52 +92,21 @@ const Navbar = () => {
         navigate(`/${tabs[newValue].text.toLowerCase()}`);
     };
 
-    // Toggle the side drawer menu
-    const toggleDrawer = (open) => (event) => {
-        if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-            return;
-        }
-        setMenuActive(open);
-    };
-
-    // Define side menu items
-    const menuItems = [
-        { text: 'Values & Governance', icon: <ValuesIcon />, link: '/values-governance' },
-        { text: 'Testimonies', icon: <TestimoniesIcon />, link: '/testimonies' },
-        { text: 'Help', icon: <HelpIcon />, link: '/help' },
-        { text: 'Shopping Cart', icon: <ShoppingCartIcon />, link: '/cart' }
-    ];
-
-    // Render side menu list
-    const renderMenuList = () => (
-        <div
-            role="presentation"
-            onClick={() => setMenuActive(false)}
-            onKeyDown={toggleDrawer(false)}
-        >
-            <List>
-                {menuItems.map((item) => (
-                    <ListItem button key={item.text} component={RouterLink} to={item.link}>
-                        <ListItemIcon>{item.icon}</ListItemIcon>
-                        <ListItemText primary={item.text} />
-                    </ListItem>
-                ))}
-            </List>
-        </div>
-    );
-
     return (
         <ThemeProvider theme={theme}>
             <AppBar position="sticky" color="primary">
-                {loading && <LinearProgress color="secondary" />}
                 <Toolbar>
-                    <Tooltip title="Open Menu">
+                    <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}>
+                        <MenuIcon />
+                    </IconButton>
+                    {/* <Tooltip title="Open Menu">
+                        
                         <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
                             <Badge badgeContent={4} color="secondary">
                                 <MenuIcon />
                             </Badge>
                         </IconButton>
-                    </Tooltip>
+                    </Tooltip> */}
                     <Typography variant="h6">
                         <Logo />
                     </Typography>
@@ -165,13 +134,12 @@ const Navbar = () => {
                         <MenuItem value="Industrial">Industrial</MenuItem>
                         <MenuItem value="Agriculture">Agriculture</MenuItem>
                     </Select>
-                    <SearchField placeholder="Search..." variant="outlined" size="small" />
+                    {/* Search Bar */}
+                    <SearchBar onSearch={handleSearch} />
                     <Account />
                 </Toolbar>
-                <Drawer anchor="left" open={menuActive} onClose={toggleDrawer(false)}>
-                    {renderMenuList()}
-                    <Cart />
-                </Drawer>
+                <PersistentSideDrawer open={drawerOpen} toggleDrawer={toggleDrawer} />
+                {/* <PersistentSideDrawer open={menuActive} toggleDrawer={toggleDrawer} /> */}
             </AppBar>
         </ThemeProvider>
     );

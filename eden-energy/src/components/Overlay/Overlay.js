@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Box, Modal, Typography, Card, CardActionArea, CardMedia, styled } from '@mui/material';
 
-import IndustryContext from '../../Context';
+import {IndustryContext} from '../../Context';
 
 // Import SVG images
 import ResidentialSVG from '../../assets/images/Residential.png';
@@ -82,7 +82,7 @@ const CardBack = styled('div')({
     transform: 'rotateY(180deg)',
 });
 
-const Overlay = ({ onClose }) => {
+const Overlay = ({ open, onClose, purpose }) => {
     // Function to handle industry selection
     const { setIndustry } = useContext(IndustryContext);
 
@@ -92,116 +92,141 @@ const Overlay = ({ onClose }) => {
         onClose();
     };
 
+    const renderContent = () => {
+        switch (purpose) {
+            case 'industrySelection':
+                return (
+                    <StyledModal
+                        open
+                        onClose={onClose}
+                        aria-labelledby="select-industry"
+                        aria-describedby="select-industry-modal"
+                        disableEscapeKeyDown // Disables closing the modal with the escape key
+                    >
+                        <Box bgcolor="background.paper" p={4} borderRadius={5}>
+                            <Box textAlign="center" mb={4}>
+                                <Typography variant="h4" component="h" gutterBottom fontWeight="bold">
+                                    Eden Energy
+                                </Typography>
+                                <Typography variant="subtitle1" color="textSecondary" mb={4}>
+                                    Specialised Solar Solutions
+                                </Typography>
+                                <Typography variant="subtitle2" color="textSecondary" fontWeight="bold">
+                                    Select Your Industry
+                                </Typography>
+                            </Box>
+                            <GridContainer display="flex" justifyContent="center" flexWrap="wrap">
+                                {/* FlipCard for Residential */}
+                                <FlipCard>
+                                    <FlipCardInner>
+                                        <CardFront onClick={() => handleIndustrySelect('Residential')}>
+                                            <CardMedia
+                                                component="img"
+                                                image={ResidentialSVG}
+                                                alt="Residential"
+                                                loading="lazy" // This enables lazy loading
+                                            />
+                                        </CardFront>
+                                        <CardBack  onClick={() => handleIndustrySelect('Residential')}>
+                                            <Typography gutterBottom variant="h5" component="div">
+                                                Residential
+                                            </Typography>
+                                            <Typography variant="body2" component="p" gutterBottom>
+                                                Elevate your home with our tailored solar solutions. Our panels are designed to fit your roof space perfectly, ensuring optimal energy production. Generate your own power and enjoy lower electricity bills, a reliable power supply, and a sustainable lifestyle.
+                                            </Typography>
+                                        </CardBack>
+                                    </FlipCardInner>
+                                </FlipCard>
+                                {/* FlipCard for Commercial */}
+                                <FlipCard>
+                                    <FlipCardInner>
+                                        <CardFront onClick={() => handleIndustrySelect('Commercial')}>
+                                            <CardMedia
+                                                component="img"
+                                                image={CommercialSVG}
+                                                alt="Commercial"
+                                                loading="lazy" // This enables lazy loading
+                                            />
+                                        </CardFront>
+                                        <CardBack onClick={() => handleIndustrySelect('Commercial')}>
+                                            <Typography gutterBottom variant="h5" component="div">
+                                                Commercial
+                                            </Typography>
+                                            <Typography variant="body2" component="p" gutterBottom>
+                                                Empower your business operations with our efficient solar panels. Enjoy uninterrupted productivity with a dependable power source that also serves as a backup during grid outages.
+                                            </Typography>
+                                        </CardBack>
+                                    </FlipCardInner>
+                                </FlipCard>
+
+                                {/* FlipCard for Industrial */}
+                                <FlipCard>
+                                    <FlipCardInner>
+                                        <CardFront onClick={() => handleIndustrySelect('Industrial')}>
+                                            <CardMedia
+                                                component="img"
+                                                image={IndustrialSVG}
+                                                alt="Industrial"
+                                                loading="lazy" // This enables lazy loading
+                                            />
+                                        </CardFront>
+                                        <CardBack onClick={() => handleIndustrySelect('Industrial')}>
+                                            <Typography gutterBottom variant="h5" component="div">
+                                                Industrial
+                                            </Typography>
+                                            <Typography variant="body2" component="p" gutterBottom>
+                                                Achieve energy independence and stabilize operational costs with our robust solar solutions designed for industrial needs. Mitigate the impact of fluctuating energy prices and reduce grid dependency.
+                                            </Typography>
+                                        </CardBack>
+                                    </FlipCardInner>
+                                </FlipCard>
+
+                                {/* FlipCard for Agricultural */}
+                                <FlipCard>
+                                    <FlipCardInner>
+                                        <CardFront onClick={() => handleIndustrySelect('Agricultural')}>
+                                            <CardMedia
+                                                component="img"
+                                                image={AgriculturalSVG}
+                                                alt="Agricultural"
+                                                loading="lazy" // This enables lazy loading
+                                            />
+                                        </CardFront>
+                                        <CardBack onClick={() => handleIndustrySelect('Agricultural')}>
+                                            <Typography gutterBottom variant="h5" component="div">
+                                                Agricultural
+                                            </Typography>
+                                            <Typography variant="body2" component="p" gutterBottom>
+                                                Enhance your agricultural operations with our solar solutions. Reduce operational costs, increase efficiency, and support sustainable practices with a consistent and clean energy source.
+                                            </Typography>
+                                        </CardBack>
+                                    </FlipCardInner>
+                                </FlipCard>
+                            </GridContainer>
+                        </Box>
+                    </StyledModal>
+                );
+            case 'announcement':
+                return (
+                    <Box textAlign="center" mb={4}>
+                        {/* Announcement Content */}
+                        <Typography variant="h4" gutterBottom>
+                            Special Announcement
+                        </Typography>
+                        <Typography variant="body1">
+                            Check out our latest solar solutions and special offers!
+                        </Typography>
+                        {/* ... Additional announcement content */}
+                    </Box>
+                );
+            // ... other cases
+            default:
+                return <Typography>Content not available</Typography>;
+        }
+    };
+    console.log(purpose);
     return (
-        <StyledModal
-            open
-            onClose={onClose}
-            aria-labelledby="select-industry"
-            aria-describedby="select-industry-modal"
-            disableEscapeKeyDown // Disables closing the modal with the escape key
-        >
-            <Box bgcolor="background.paper" p={4} borderRadius={5}>
-                <Box textAlign="center" mb={4}>
-                    <Typography variant="h4" component="h" gutterBottom fontWeight="bold">
-                        Eden Energy
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary" mb={4}>
-                        Specialised Solar Solutions
-                    </Typography>
-                    <Typography variant="subtitle2" color="textSecondary" fontWeight="bold">
-                        Select Your Industry
-                    </Typography>
-                </Box>
-                <GridContainer display="flex" justifyContent="center" flexWrap="wrap">
-                    {/* FlipCard for Residential */}
-                    <FlipCard>
-                        <FlipCardInner>
-                            <CardFront onClick={() => handleIndustrySelect('Residential')}>
-                                <CardMedia
-                                    component="img"
-                                    image={ResidentialSVG}
-                                    alt="Residential"
-                                    loading="lazy" // This enables lazy loading
-                                />
-                            </CardFront>
-                            <CardBack  onClick={() => handleIndustrySelect('Residential')}>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Residential
-                                </Typography>
-                                <Typography variant="body2" component="p" gutterBottom>
-                                    Elevate your home with our tailored solar solutions. Our panels are designed to fit your roof space perfectly, ensuring optimal energy production. Generate your own power and enjoy lower electricity bills, a reliable power supply, and a sustainable lifestyle.
-                                </Typography>
-                            </CardBack>
-                        </FlipCardInner>
-                    </FlipCard>
-                    {/* FlipCard for Commercial */}
-                    <FlipCard>
-                        <FlipCardInner>
-                            <CardFront onClick={() => handleIndustrySelect('Commercial')}>
-                                <CardMedia
-                                    component="img"
-                                    image={CommercialSVG}
-                                    alt="Commercial"
-                                    loading="lazy" // This enables lazy loading
-                                />
-                            </CardFront>
-                            <CardBack onClick={() => handleIndustrySelect('Commercial')}>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Commercial
-                                </Typography>
-                                <Typography variant="body2" component="p" gutterBottom>
-                                    Empower your business operations with our efficient solar panels. Enjoy uninterrupted productivity with a dependable power source that also serves as a backup during grid outages.
-                                </Typography>
-                            </CardBack>
-                        </FlipCardInner>
-                    </FlipCard>
-
-                    {/* FlipCard for Industrial */}
-                    <FlipCard>
-                        <FlipCardInner>
-                            <CardFront onClick={() => handleIndustrySelect('Industrial')}>
-                                <CardMedia
-                                    component="img"
-                                    image={IndustrialSVG}
-                                    alt="Industrial"
-                                    loading="lazy" // This enables lazy loading
-                                />
-                            </CardFront>
-                            <CardBack onClick={() => handleIndustrySelect('Industrial')}>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Industrial
-                                </Typography>
-                                <Typography variant="body2" component="p" gutterBottom>
-                                    Achieve energy independence and stabilize operational costs with our robust solar solutions designed for industrial needs. Mitigate the impact of fluctuating energy prices and reduce grid dependency.
-                                </Typography>
-                            </CardBack>
-                        </FlipCardInner>
-                    </FlipCard>
-
-                    {/* FlipCard for Agricultural */}
-                    <FlipCard>
-                        <FlipCardInner>
-                            <CardFront onClick={() => handleIndustrySelect('Agricultural')}>
-                                <CardMedia
-                                    component="img"
-                                    image={AgriculturalSVG}
-                                    alt="Agricultural"
-                                    loading="lazy" // This enables lazy loading
-                                />
-                            </CardFront>
-                            <CardBack onClick={() => handleIndustrySelect('Agricultural')}>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Agricultural
-                                </Typography>
-                                <Typography variant="body2" component="p" gutterBottom>
-                                    Enhance your agricultural operations with our solar solutions. Reduce operational costs, increase efficiency, and support sustainable practices with a consistent and clean energy source.
-                                </Typography>
-                            </CardBack>
-                        </FlipCardInner>
-                    </FlipCard>
-                </GridContainer>
-            </Box>
-        </StyledModal>
+        renderContent()
     );
 };
 
