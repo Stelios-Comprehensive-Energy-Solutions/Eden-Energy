@@ -2,7 +2,8 @@ const sections = [
     {
         id: 'about-us',
         title: 'About Us',
-        description: 'Stelios PBO was founded in George in 2015 by Pierre Ferreira, Rudi Steyn, and Japie Lubbe...',
+        summary: "",
+        description: 'Stelios PBO was founded in George in 2015 by Walter',
         img: 'path_to_about_image.jpg',
         url: '/about#about-us',
         tags: ['company', 'history', 'team'],
@@ -12,6 +13,7 @@ const sections = [
     {
         id: 'our-products',
         title: 'Products',
+        summary: "",
         description: 'Our product range is meticulously curated to offer the best in sustainable energy...',
         img: 'path_to_products_image.jpg',
         url: '/products#our-products',
@@ -22,6 +24,7 @@ const sections = [
     {
         id: 'our-services',
         title: 'Services',
+        summary: "",
         description: 'Beyond products, our services are what truly set us apart...',
         img: 'path_to_services_image.jpg',
         url: '/services#our-services',
@@ -32,6 +35,7 @@ const sections = [
     {
         id: 'client-testimonies',
         title: 'Testimonies',
+        summary: "",
         description: 'Our clients are at the heart of everything we do...',
         img: 'path_to_testimonies_image.jpg',
         url: '/testimonies#client-testimonies',
@@ -42,6 +46,7 @@ const sections = [
     {
         id: 'values-governance',
         title: 'Values & Governance',
+        summary: "",
         description: 'At Eden-Energy, our values guide our actions...',
         img: 'path_to_values_image.jpg',
         url: '/values-governance#values-governance',
@@ -52,6 +57,7 @@ const sections = [
     {
         id: 'help-and-support',
         title: 'Help',
+        summary: "",
         description: 'We understand that transitioning to sustainable energy can be daunting...',
         img: 'path_to_help_image.jpg',
         url: '/help#help-and-support',
@@ -62,6 +68,7 @@ const sections = [
     {
         id: 'contact-us',
         title: 'Contact',
+        summary: "",
         description: 'Whether you have a query, feedback, or just want to chat about sustainable energy...',
         img: 'path_to_contact_image.jpg',
         url: '/contact#contact-us',

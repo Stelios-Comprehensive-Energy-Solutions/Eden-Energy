@@ -88,7 +88,7 @@ const Overlay = ({ open, onClose, purpose }) => {
 
     const handleIndustrySelect = (industry) => {
         setIndustry(industry);
-        console.log(industry); // This will be replaced with actual logic
+        // console.log(industry); // This will be replaced with actual logic
         onClose();
     };
 
@@ -224,7 +224,7 @@ const Overlay = ({ open, onClose, purpose }) => {
                 return <Typography>Content not available</Typography>;
         }
     };
-    console.log(purpose);
+    // console.log(purpose);
     return (
         renderContent()
     );

@@ -132,7 +132,7 @@ const Navbar = () => {
                         <MenuItem value="Residential">Residential</MenuItem>
                         <MenuItem value="Commercial">Commercial</MenuItem>
                         <MenuItem value="Industrial">Industrial</MenuItem>
-                        <MenuItem value="Agriculture">Agriculture</MenuItem>
+                        <MenuItem value="Agricultural">Agriculture</MenuItem>
                     </Select>
                     {/* Search Bar */}
                     <SearchBar onSearch={handleSearch} />

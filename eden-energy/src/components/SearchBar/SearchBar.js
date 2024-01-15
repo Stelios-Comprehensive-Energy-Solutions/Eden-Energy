@@ -59,18 +59,23 @@ function gatherSearchableText() {
 
 function gatherGlobalSearchableText(query) {
     let matches = [];
-    // centralContentIndex.forEach((contentPage) => {
-    //     console.log("Page Route:", contentPage.pageRoute);
-    //     // contentPage.forEach(content => {
-    //     //     // Assuming each content has 'title' and 'description'
-    //     //     if (content.title.toLowerCase().includes(query.toLowerCase()) ||
-    //     //         content.description.toLowerCase().includes(query.toLowerCase())) {
-    //     //         matches.push(`Page ::${content.title}`);
-    //     //     }
-    //     // });
-    // });
-    // return matches;
+    centralContentIndex.forEach((contentPage) => {
+        contentPage.sections.forEach(content => {
+            // Check if the title or description includes the query
+            if (content.title.toLowerCase().includes(query.toLowerCase()) ||
+                content.description.toLowerCase().includes(query.toLowerCase())) {
+                matches.push({
+                    pageRoute: contentPage.pageRoute,
+                    title: content.title,
+                    text: content.description
+                    // You can add more fields here if needed
+                });
+            }
+        });
+    });
+    return matches;
 }
+
 
 
 
@@ -104,11 +109,11 @@ export default function SearchBar() {
             // Global search
             const globalResults = gatherGlobalSearchableText(value);
             // console.log(globalResults);
-            // setGlobalSearchResults(globalResults);
+            setGlobalSearchResults(globalResults);
         } else {
             setAnchorEl(null);
             setSearchResults([]);
-            // setGlobalSearchResults([]);
+            setGlobalSearchResults([]);
         }
     };
 
@@ -195,7 +200,8 @@ export default function SearchBar() {
                             globalSearchResults.map((result, index) => (
                                 <a
                                     key={index}
-                                    href={result.url}
+                                    href={result.pageRoute}
+                                    target="_blank"
                                     style={{ display: 'block', cursor: 'pointer', padding: '5px', borderBottom: '1px solid #ddd' }}
                                     tabIndex={0}
                                 >

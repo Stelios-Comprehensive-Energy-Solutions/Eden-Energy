@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import {IndustryContext} from '../../Context';
+import { IndustryContext } from '../../Context';
 import { Grid, Card, CardMedia, CardContent, Typography, Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
-import servicesData from './servicesData';
+import servicesData from './Content';
 import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/Navbar/Navbar';
 
@@ -24,24 +24,33 @@ function Services() {
             <Navbar />
             <h1>Services for {industry}</h1>
             <Grid container spacing={4}>
-                {servicesData[industry].map((service, index) => (
+                {servicesData.sections[industry].map((service, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>
                         <Card>
-                            <CardMedia
-                                component="img"
-                                height="140"
-                                image={service.image || "/static/images/cards/service-placeholder.jpg"}
-                                alt={service.name}
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    {service.name}
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    {service.summary}
-                                </Typography>
-                                <Button size="small" onClick={() => handleOpen(service)}>Learn More</Button>
-                            </CardContent>
+                            <Grid container>
+                                <Grid item xs={12} sm={5}>
+                                    <CardMedia
+                                        component="img"
+                                        image={require(`../../../public/images/${service.image}`).default}
+                                        alt={service.name}
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={7}>
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            {service.title}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {service.summary}
+                                        </Typography>
+                                        {/* <Typography variant="body2">
+                                            {service.description}
+                                        </Typography> */}
+                                        <Button size="small" onClick={() => handleOpen(service)}>Learn More</Button>
+                                    </CardContent>
+                                </Grid>
+                            </Grid>
                         </Card>
                     </Grid>
                 ))}

@@ -1,34 +1,59 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import React, { useContext, useMemo } from 'react';
+import { Box, Grid, Typography, Button, Card, styled } from '@mui/material';
+import { IndustryContext } from '../../Context';
+import content from './Content'; // Adjust the path as needed
 import './Banner.css';
 
-function Banner({ videoSrc, onButtonClick }) {
+const BannerCard = styled(Card)({
+    maxWidth: '100%',
+    height: '100%',
+    margin: 'auto',
+});
+
+const BannerMedia = styled(Box)({
+    height: 300, // Adjust the height as needed
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+});
+
+function Banner({ onButtonClick }) {
+    const { industry } = useContext(IndustryContext);
+
+    // Generate a random image number between 1 and 4
+    const imageNumber = useMemo(() => Math.floor(Math.random() * 4) + 1, [industry]);
+
+    // Construct the image path
+    const imagePath = require(`../../../public/images/${industry}Landing${imageNumber}.jpeg`).default; // Adjust the path as needed
+
+    // Find the content for the current industry
+    // const content.sections[industry] = content.sections.find(section => section.id === industry.toLowerCase()) || content.sections[0];
+
     return (
-        <section className="banner">
-            <div className="banner-left">
-                <Typography variant="h2" component="h1" gutterBottom>
-                    Empowering Africa
-                </Typography>
-                <Typography variant="h5" component="p" gutterBottom>
-                    With Sustainable Energy Solutions
-                </Typography>
-                <Typography variant="h4" color="primary" gutterBottom>
-                    Always on
-                </Typography>
-                <Typography variant="body1" component="p" gutterBottom>
-                    At Eden Energy, we are solution-oriented engineers, leading the way in the renewable energy revolution. It all starts with solar, the cornerstone of our commitment to providing sustainable energy solutions that stand the test of time.
-                </Typography>
-                <Button variant="contained" color="primary" onClick={onButtonClick}>
-                    Learn More
-                </Button>
-            </div>
-            <div className="banner-right">
-                <video autoPlay muted loop id="bannerVideo" aria-label="Background video">
-                    <source src={videoSrc || "/path_to_your_default_video.mp4"} type="video/mp4" />
-                </video>
-            </div>
-        </section>
+        <Grid container spacing={2} alignItems="center" justifyContent="center" style={{ minHeight: '100vh' }}>
+            <Grid item xs={12} md={6}>
+                <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" p={4}>
+                    <Typography variant="h2" gutterBottom align="center">
+                        {content.sections[industry].title}
+                    </Typography>
+                    <Typography variant="h5" gutterBottom align="center">
+                        {content.sections[industry].summary}
+                    </Typography>
+                    <Typography variant="body1" gutterBottom align="center">
+                        {content.sections[industry].description}
+                    </Typography>
+                    <Button variant="contained" color="primary" onClick={onButtonClick}>
+                        Learn More
+                    </Button>
+                </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <BannerCard>
+                    <BannerMedia
+                        style={{ backgroundImage: `url(${imagePath})` }}
+                    />
+                </BannerCard>
+            </Grid>
+        </Grid>
     );
 }
 
