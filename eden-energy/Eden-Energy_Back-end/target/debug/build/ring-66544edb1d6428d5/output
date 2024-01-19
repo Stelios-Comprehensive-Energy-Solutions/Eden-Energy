@@ -1,0 +1,3 @@
+cargo:rustc-link-lib=static=ring-core
+cargo:rustc-link-lib=static=ring-test
+cargo:rustc-link-search=native=/home/raynhardt/Documents/Eden-Energy/eden-energy/Eden-Energy_Back-end/target/debug/build/ring-66544edb1d6428d5/out
