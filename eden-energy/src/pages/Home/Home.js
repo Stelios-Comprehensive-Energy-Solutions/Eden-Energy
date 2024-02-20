@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Typography, Button, Box, Grid, Paper } from '@mui/material';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import Navbar from '../../components/Navbar/Navbar';
 import Banner from '../../components/Banner/Banner';
 import Footer from '../../components/Footer/Footer';
 import pageContent from './Content'; // Adjust the path if necessary
-
+import { IndustryContext } from '../../Context'; // Adjust the path if necessary
 
 function Home() {
+    const { industryColor } = useContext(IndustryContext);
 
     const theme = createTheme({
+        palette: {
+            primary: {
+                main: industryColor.primary,
+            },
+            secondary: {
+                main: industryColor.secondary,
+            },
+            text: {
+                primary: industryColor.textColor,
+                secondary: industryColor.secondaryTextColor,
+            },
+        },
         components: {
             MuiCssBaseline: {
                 styleOverrides: {
@@ -18,12 +31,12 @@ function Home() {
                         backgroundImage: `url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M24 48L0 24l24-24 24 24'/&gt;%3C/g%3E%3C/svg%3E")`,
                         backgroundRepeat: 'no-repeat',
                         backgroundAttachment: 'fixed',
+                        backgroundColor: industryColor.backgroundColor
                     },
                 },
             },
         },
     });
-
 
     return (
         <ThemeProvider theme={theme}>

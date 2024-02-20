@@ -46,9 +46,6 @@ const FlipCardInner = styled('div')({
     transformStyle: 'preserve-3d',
     '&:hover': {
         transform: 'rotateY(180deg)',
-    },
-    '&:hover': {
-        transform: 'rotateY(180deg)',
         boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', // Added shadow effect for depth
     },
 });
@@ -57,7 +54,6 @@ const CardFront = styled(CardActionArea)({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backfaceVisibility: 'hidden', // Hide the back side when flipped
     cursor: 'pointer',
     transition: 'transform 0.3s ease', // Optional: for a smoother hover effect
     backfaceVisibility: 'hidden',
@@ -67,10 +63,8 @@ const CardBack = styled('div')({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backfaceVisibility: 'hidden',
     backgroundColor: '#f0f0f0', // Choose a background color for the back
     color: 'black',
-    transform: 'rotateY(180deg)', // Flip the back side by default
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -82,7 +76,7 @@ const CardBack = styled('div')({
     transform: 'rotateY(180deg)',
 });
 
-const Overlay = ({ open, onClose, purpose }) => {
+const Overlay = ({ onClose, purpose }) => {
     // Function to handle industry selection
     const { setIndustry } = useContext(IndustryContext);
 

@@ -1,0 +1,28 @@
+/* Values.css */
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+  
+  .card {
+    width: 80%; /* Updated width as per your request */
+    box-shadow: 3;
+  }
+  
+  .iconBox {
+    background-color: #ffffff; /* Assuming a white background; adjust as per your theme */
+    border-radius: 50%;
+    padding: 16px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+  }
+  
+  .cardContent {
+    text-align: center;
+    margin-top: 16px;
+  }
+  

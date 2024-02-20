@@ -1,15 +1,14 @@
 import React, { useState, useMemo, useContext } from 'react';
-import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
-    AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon,
-    Tabs, Tab, TextField, Badge, Typography, Tooltip, styled, Select, MenuItem,Collapse
+    AppBar, Toolbar, IconButton,  
+    Tabs, Tab, Typography, styled, Select, MenuItem
 } from '@mui/material';
 
 import {
-    Menu as MenuIcon, Assignment as ValuesIcon, RateReview as TestimoniesIcon,
-    HelpOutline as HelpIcon, ShoppingCart as ShoppingCartIcon, Home as HomeIcon,
-    Build as BuildIcon, ShoppingBasket as ShoppingBasketIcon, AccountCircle as AccountCircleIcon,
-    Mail as MailIcon,Settings as SettingsIcon,Notifications as NotificationsIcon, ExpandLess, ExpandMore
+    Menu as MenuIcon, Home as HomeIcon,
+    Build as BuildIcon, ShoppingBasket as ShoppingBasketIcon,
+    Mail as MailIcon
 } from '@mui/icons-material';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -17,9 +16,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {IndustryContext} from '../../Context';
 
 import Logo from '../Logo/Logo';
-import Cart from '../Cart/Cart';
 import Account from '../Account/Account';
-import PersistentSideDrawer from '../PersistentSideDrawer.js/PersistentSideDrawer';
+import PersistentSideDrawer from '../PersistentSideDrawer/PersistentSideDrawer';
 import SearchBar from '../SearchBar/SearchBar'; // Import the SearchBar component
 
 const Spacer = styled('div')({
@@ -28,7 +26,17 @@ const Spacer = styled('div')({
 
 const StyledTab = styled(Tab)({
     '&.Mui-selected': {
-        color: '#fff', // or any color that contrasts well with the AppBar's color
+        color: '#67acc1', // or any color that contrasts well with the AppBar's color
+    },
+    '&:hover': {
+        color: '#9bbfd2', // Change the hover color to green
+    },
+    // other styles...
+});
+
+const StyledIconButton = styled(IconButton)({
+    '&:hover': {
+        color: '#9bbfd2', // Change the hover color to green
     },
     // other styles...
 });
@@ -44,10 +52,7 @@ const theme = createTheme({
         background: {
             default: '#f4f4f4', // A light background color
         },
-    },
-    typography: {
-        // Adjust typography if needed
-    },
+    }
     // ... any other theme customizations
 });
 
@@ -55,13 +60,37 @@ const Navbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const { industry, setIndustry } = useContext(IndustryContext);
+    const { industry, setIndustry,industryColor } = useContext(IndustryContext);
+
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: industryColor.primary,
+            },
+            secondary: {
+                main: industryColor.secondary,
+            },
+            text: {
+                primary: industryColor.textColor,
+                secondary: industryColor.secondaryTextColor,
+            },
+        },
+        components: {
+            MuiCssBaseline: {
+                styleOverrides: {
+                    body: {
+                        backgroundColor: industryColor.backgroundColor
+                    },
+                },
+            },
+        },
+    });
 
     const handleSearch = (searchTerm) => {
         // Implement your search logic here
         // For example, navigate to a search results page or filter items in the current view
         console.log("Searching for:", searchTerm);
-        };
+    };
 
     const handleIndustryChange = (event) => {
         setIndustry(event.target.value);
@@ -96,20 +125,25 @@ const Navbar = () => {
         <ThemeProvider theme={theme}>
             <AppBar position="sticky" color="primary">
                 <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}>
+                    <StyledIconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}>
                         <MenuIcon />
-                    </IconButton>
-                    {/* <Tooltip title="Open Menu">
-                        
-                        <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
-                            <Badge badgeContent={4} color="secondary">
-                                <MenuIcon />
-                            </Badge>
-                        </IconButton>
-                    </Tooltip> */}
+                    </StyledIconButton>
                     <Typography variant="h6">
                         <Logo />
                     </Typography>
+                    {/* Dropdown for selecting industry */}
+                    <Select
+                        value={industry}
+                        onChange={handleIndustryChange}
+                        displayEmpty
+                        inputProps={{ 'aria-label': 'Without label' }}
+                        style={{ marginRight: '10px'}} // Adjust styling as needed
+                    >
+                        <MenuItem value="Residential">Residential</MenuItem>
+                        <MenuItem value="Commercial">Commercial</MenuItem>
+                        <MenuItem value="Industrial">Industrial</MenuItem>
+                        <MenuItem value="Agricultural">Agriculture</MenuItem>
+                    </Select>
                     <Tabs value={tabValue} onChange={handleTabChange}>
                         {tabs.map((tab, index) => (
                             <StyledTab
@@ -121,25 +155,12 @@ const Navbar = () => {
                         ))}
                     </Tabs>
                     <Spacer />
-                    {/* Dropdown for selecting industry */}
-                    <Select
-                        value={industry}
-                        onChange={handleIndustryChange}
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                        style={{ marginRight: '10px', color: 'white' }} // Adjust styling as needed
-                    >
-                        <MenuItem value="Residential">Residential</MenuItem>
-                        <MenuItem value="Commercial">Commercial</MenuItem>
-                        <MenuItem value="Industrial">Industrial</MenuItem>
-                        <MenuItem value="Agricultural">Agriculture</MenuItem>
-                    </Select>
+                    
                     {/* Search Bar */}
                     <SearchBar onSearch={handleSearch} />
                     <Account />
                 </Toolbar>
                 <PersistentSideDrawer open={drawerOpen} toggleDrawer={toggleDrawer} />
-                {/* <PersistentSideDrawer open={menuActive} toggleDrawer={toggleDrawer} /> */}
             </AppBar>
         </ThemeProvider>
     );

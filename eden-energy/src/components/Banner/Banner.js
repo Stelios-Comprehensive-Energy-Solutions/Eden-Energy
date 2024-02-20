@@ -1,5 +1,6 @@
 import React, { useContext, useMemo } from 'react';
-import { Box, Grid, Typography, Button, Card, styled } from '@mui/material';
+import { Box, Grid, Typography, Card, styled } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { IndustryContext } from '../../Context';
 import content from './Content'; // Adjust the path as needed
 import './Banner.css';
@@ -17,7 +18,31 @@ const BannerMedia = styled(Box)({
 });
 
 function Banner({ onButtonClick }) {
-    const { industry } = useContext(IndustryContext);
+    const { industry, industryColor } = useContext(IndustryContext);
+
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: industryColor.primary,
+            },
+            secondary: {
+                main: industryColor.secondary,
+            },
+            text: {
+                primary: industryColor.textColor,
+                secondary: industryColor.secondaryTextColor,
+            },
+        },
+        components: {
+            MuiCssBaseline: {
+                styleOverrides: {
+                    body: {
+                        backgroundColor: industryColor.backgroundColor
+                    },
+                },
+            },
+        },
+    });
 
     // Generate a random image number between 1 and 4
     const imageNumber = useMemo(() => Math.floor(Math.random() * 4) + 1, [industry]);
@@ -29,31 +54,30 @@ function Banner({ onButtonClick }) {
     // const content.sections[industry] = content.sections.find(section => section.id === industry.toLowerCase()) || content.sections[0];
 
     return (
-        <Grid container spacing={2} alignItems="center" justifyContent="center" style={{ minHeight: '100vh' }}>
-            <Grid item xs={12} md={6}>
-                <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" p={4}>
-                    <Typography variant="h2" gutterBottom align="center">
-                        {content.sections[industry].title}
-                    </Typography>
-                    <Typography variant="h5" gutterBottom align="center">
-                        {content.sections[industry].summary}
-                    </Typography>
-                    <Typography variant="body1" gutterBottom align="center">
-                        {content.sections[industry].description}
-                    </Typography>
-                    <Button variant="contained" color="primary" onClick={onButtonClick}>
-                        Learn More
-                    </Button>
-                </Box>
+        <ThemeProvider theme={theme}>
+            <Grid container spacing={2} alignItems="center" justifyContent="center" style={{ minHeight: '60vh' }}>
+                <Grid item xs={12} md={6}>
+                    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" p={4}>
+                        <Typography variant="h2" gutterBottom align="center">
+                            {content.sections[industry].title}
+                        </Typography>
+                        <Typography variant="h5" gutterBottom align="center">
+                            {content.sections[industry].summary}
+                        </Typography>
+                        <Typography variant="body1" gutterBottom align="center">
+                            {content.sections[industry].description}
+                        </Typography>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <BannerCard>
+                        <BannerMedia
+                            style={{ backgroundImage: `url(${imagePath})` }}
+                        />
+                    </BannerCard>
+                </Grid>
             </Grid>
-            <Grid item xs={12} md={6}>
-                <BannerCard>
-                    <BannerMedia
-                        style={{ backgroundImage: `url(${imagePath})` }}
-                    />
-                </BannerCard>
-            </Grid>
-        </Grid>
+        </ThemeProvider>
     );
 }
 
