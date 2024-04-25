@@ -40,8 +40,8 @@ export const IndustryProvider = ({ children }) => {
         setIndustryColor({
           primary: '#00796b', // Teal
           secondary: '#ffc107', // Amber
-          textColor: '#ffffff',
-          secondaryTextColor: '#bdbdbd',
+          textColor: '#333333',
+          secondaryTextColor: '#555555',
           backgroundColor: '#f5f5f5',
         });
         break;
@@ -49,8 +49,8 @@ export const IndustryProvider = ({ children }) => {
         setIndustryColor({
           primary: '#558b2f', // Olive Green
           secondary: '#9e9e9e', // Gray
-          textColor: '#212121',
-          secondaryTextColor: '#757575',
+          textColor: '#333333',
+          secondaryTextColor: '#555555',
           backgroundColor: '#fafafa',
         });
         break;
@@ -58,8 +58,8 @@ export const IndustryProvider = ({ children }) => {
         setIndustryColor({
           primary: '#607d8b', // Blue Gray
           secondary: '#ff5722', // Deep Orange
-          textColor: '#ffffff',
-          secondaryTextColor: '#eeeeee',
+          textColor: '#333333',
+          secondaryTextColor: '#555555',
           backgroundColor: '#eceff1',
         });
         break;

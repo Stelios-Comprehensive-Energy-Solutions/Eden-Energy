@@ -3,9 +3,9 @@ const sections = [
         id: 'about-us',
         title: 'About Us',
         summary: "",
-        description: 'Stelios PBO was founded in George in 2015 by Walter',
-        img: 'path_to_about_image.jpg',
-        url: '/about#about-us',
+        description: "Our vision at Eden-Energy is to harness the power of alternative energy to make a significant, positive impact on our environment and communities. Inspired by a commitment to sustainability and innovation, we aim to provide clean, reliable energy solutions to a changing world, utilizing the best and latest technological advancements available."        ,
+        img: 'about-us',
+        url: '/values-governance',
         tags: ['company', 'history', 'team'],
         category: 'about',
         lastUpdated: '2022-01-01'

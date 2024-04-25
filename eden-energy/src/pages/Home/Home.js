@@ -1,14 +1,31 @@
 import React, { useContext } from 'react';
 import { Container, Typography, Button, Box, Grid, Paper } from '@mui/material';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
 import Navbar from '../../components/Navbar/Navbar';
 import Banner from '../../components/Banner/Banner';
 import Footer from '../../components/Footer/Footer';
 import pageContent from './Content'; // Adjust the path if necessary
 import { IndustryContext } from '../../Context'; // Adjust the path if necessary
+import { useNavigate } from 'react-router-dom';
+import landingImages from '../../assets/images/landingImages/landingImages';
+import { productsImages, solutionsImages } from '../../assets/images/productsImages/productImages';
 
 function Home() {
     const { industryColor } = useContext(IndustryContext);
+
+    const navigate = useNavigate();
+
+    const handleNavigate = (path) => {
+        navigate(path);
+    };
+
+    const cardData = landingImages["CardsData"];
+
 
     const theme = createTheme({
         palette: {
@@ -47,17 +64,24 @@ function Home() {
                 {pageContent.sections.map((section) => (
                     <Box component={Paper} className="section-box" elevation={3} sx={{ padding: '40px', marginTop: '40px', marginBottom: '40px', transition: '0.3s' }} key={section.title}>
                         <Grid container spacing={3}>
-                            <Grid item xs={12} md={6}>
-                                <figure>
-                                    <img src={section.img} alt={section.title} loading="lazy" style={{ width: '100%', borderRadius: '4px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }} />
-                                    <figcaption style={{ textAlign: 'center', marginTop: '10px', color: '#757575' }}>{section.title}</figcaption>
-                                </figure>
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <Typography variant="h4" gutterBottom color="primary">{section.title}</Typography>
-                                <Typography variant="body1" gutterBottom className="searchable-content">{section.description}</Typography>
-                                {section.path && <Button variant="contained" color="secondary" href={section.path}>Read More</Button>}
-                            </Grid>
+
+                                <Swiper
+                                    rewind={true}
+                                    navigation={true}
+                                    modules={[Navigation]}
+                                    autoHeight={true} // Enable autoHeight feature
+                                    className="mySwiper"
+                                >
+                                    {landingImages["CardsData"][section.id] && landingImages["CardsData"][section.id].map((Component, index) => (
+                                        <SwiperSlide key={index}>
+                                            <Component/>
+                                        </SwiperSlide>
+                                    ))
+                                    }
+
+                                </Swiper>
+                                <Button variant="contained" color="secondary" onClick={() => handleNavigate(section.url)}>Learn More</Button>
+
                         </Grid>
                     </Box>
                 ))}

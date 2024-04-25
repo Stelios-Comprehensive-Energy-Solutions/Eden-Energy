@@ -1,9 +1,11 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { Box, Grid, Typography, Card, styled } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { IndustryContext } from '../../Context';
 import content from './Content'; // Adjust the path as needed
 import './Banner.css';
+import landingImages from '../../assets/images/landingImages/landingImages'
+  
 
 const BannerCard = styled(Card)({
     maxWidth: '100%',
@@ -45,10 +47,10 @@ function Banner({ onButtonClick }) {
     });
 
     // Generate a random image number between 1 and 4
-    const imageNumber = useMemo(() => Math.floor(Math.random() * 4) + 1, [industry]);
+    const imageNumber = Math.floor(Math.random() * 4);
 
     // Construct the image path
-    const imagePath = require(`../../../public/images/${industry}Landing${imageNumber}.jpeg`).default; // Adjust the path as needed
+    const selectedImage = landingImages[industry][imageNumber];
 
     // Find the content for the current industry
     // const content.sections[industry] = content.sections.find(section => section.id === industry.toLowerCase()) || content.sections[0];
@@ -72,7 +74,7 @@ function Banner({ onButtonClick }) {
                 <Grid item xs={12} md={6}>
                     <BannerCard>
                         <BannerMedia
-                            style={{ backgroundImage: `url(${imagePath})` }}
+                            style={{ backgroundImage: `url(${selectedImage})` }}
                         />
                     </BannerCard>
                 </Grid>

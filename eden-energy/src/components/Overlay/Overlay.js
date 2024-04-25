@@ -3,11 +3,9 @@ import { Box, Modal, Typography, Card, CardActionArea, CardMedia, styled } from 
 
 import {IndustryContext} from '../../Context';
 
-// Import SVG images
-import ResidentialSVG from '../../assets/images/Residential.png';
-import CommercialSVG from '../../assets/images/Commercial.png';
-import IndustrialSVG from '../../assets/images/Industrial.png';
-import AgriculturalSVG from '../../assets/images/Agricultural.png';
+import overlayImages from '../../assets/images/overlayImages/overlayImages'
+
+
 
 const StyledModal = styled(Modal)({
     display: 'flex',
@@ -116,7 +114,7 @@ const Overlay = ({ onClose, purpose }) => {
                                         <CardFront onClick={() => handleIndustrySelect('Residential')}>
                                             <CardMedia
                                                 component="img"
-                                                image={ResidentialSVG}
+                                                image={overlayImages["Residential"]}
                                                 alt="Residential"
                                                 loading="lazy" // This enables lazy loading
                                             />
@@ -137,7 +135,7 @@ const Overlay = ({ onClose, purpose }) => {
                                         <CardFront onClick={() => handleIndustrySelect('Commercial')}>
                                             <CardMedia
                                                 component="img"
-                                                image={CommercialSVG}
+                                                image={overlayImages["Commercial"]}
                                                 alt="Commercial"
                                                 loading="lazy" // This enables lazy loading
                                             />
@@ -159,7 +157,7 @@ const Overlay = ({ onClose, purpose }) => {
                                         <CardFront onClick={() => handleIndustrySelect('Industrial')}>
                                             <CardMedia
                                                 component="img"
-                                                image={IndustrialSVG}
+                                                image={overlayImages["Industrial"]}
                                                 alt="Industrial"
                                                 loading="lazy" // This enables lazy loading
                                             />
@@ -181,7 +179,7 @@ const Overlay = ({ onClose, purpose }) => {
                                         <CardFront onClick={() => handleIndustrySelect('Agricultural')}>
                                             <CardMedia
                                                 component="img"
-                                                image={AgriculturalSVG}
+                                                image={overlayImages["Agricultural"]}
                                                 alt="Agricultural"
                                                 loading="lazy" // This enables lazy loading
                                             />
